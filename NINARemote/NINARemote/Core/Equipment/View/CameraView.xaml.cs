@@ -1,21 +1,20 @@
-﻿using NINARemote.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace NINARemote.Views
+namespace NINARemote.Core.Equipment.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class CameraView : ContentView
     {
-        public LoginPage()
+        public CameraView()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
         }
     }
 }

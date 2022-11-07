@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NINARemote.App">
+<Application
+    x:Class="NINARemote.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:NINARemote.Views.Converter">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
@@ -9,7 +11,7 @@
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="White" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -27,6 +29,24 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-        </ResourceDictionary>        
+
+            <converter:DataTemplateToViewConverter x:Key="DataTemplateViewConverter" />
+
+            <Color x:Key="ApplicationBackgroundColor">#FF202020</Color>
+
+            <Color x:Key="Background">#333333</Color>
+
+            <Color x:Key="KeyboardFocusBorderColor">#87FFFFFF</Color>
+
+            <!--  Colors  -->
+
+            <Color x:Key="TextFillColorPrimary">#FFFFFF</Color>
+            <Color x:Key="TextFillColorSecondary">#C5FFFFFF</Color>
+            <Color x:Key="TextFillColorTertiary">#87FFFFFF</Color>
+            <Color x:Key="TextFillColorDisabled">#5DFFFFFF</Color>
+            <Color x:Key="TextPlaceholderColor">#87FFFFFF</Color>
+            <Color x:Key="TextFillColorInverse">#E4000000</Color>
+            <Color x:Key="ButtonSelected">#444444</Color>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

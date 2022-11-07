@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NINARemote.Views.NINAPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:NINARemote.ViewModels"
+    Title="{Binding Title}"
+    BackgroundColor="{StaticResource ApplicationBackgroundColor}"
+    BindingContext="{Binding, Source={x:Static vm:NINAPageVM}}">
+
+    <!-- <ContentView Content="{Bidning Current, Converter={StaticResource DataTemplateViewConverter}}" />-->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollView>
+            <StackLayout
+                BackgroundColor="{StaticResource ApplicationBackgroundColor}"
+                HorizontalOptions="Start"
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand">
+                <RadioButton
+                    CheckedChanged="EquipmentCheck"
+                    Content="Equipment"
+                    FontSize="14"
+                    HeightRequest="40"
+                    IsChecked="True"
+                    TextColor="White" />
+            </StackLayout>
+
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

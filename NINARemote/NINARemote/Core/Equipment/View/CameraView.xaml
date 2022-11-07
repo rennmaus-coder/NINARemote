@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="NINARemote.Core.Equipment.View.CameraView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:NINARemote.ViewModels"
+    BackgroundColor="{StaticResource ApplicationBackgroundColor}"
+    BindingContext="{Binding Camera, Source={x:Static vm:NINAPageVM.Instance.EquipmentVM}}">
+
+    <ContentView.Content>
+        <Grid BackgroundColor="{StaticResource ApplicationBackgroundColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*" />
+                <ColumnDefinition Width=".5*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0" Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Name: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.Name}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Description: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.Discription}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="DriverInfo: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.DriverInfo}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="DriverVersion: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.DriverVersion}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="DeviceId: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.DeviceId}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Connected: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.Connected}" TextColor="White" />
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Temperature: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.Temperature}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Gain: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.Gain}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="BitDepth: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.BitDepth}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Offset: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.Offset}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IsSubSampelEnabled: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.IsSubSampleEnabled}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="PixelSize: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.PixelSize}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Battery: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.Battery}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="TemperatureSetPoint: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.TemperatureSetPoint}" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IsExposing: " TextColor="White" />
+                    <Label Text="{Binding CurrentInfo.IsExposing}" TextColor="White" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -1,8 +1,4 @@
-﻿using NINARemote.Services;
-using NINARemote.Views;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace NINARemote
 {
@@ -13,7 +9,6 @@ namespace NINARemote
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
