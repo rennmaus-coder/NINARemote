@@ -12,7 +12,7 @@ namespace NINARemote.Views
 
         private void EquipmentCheck(object sender, CheckedChangedEventArgs e)
         {
-            NINAPageVM.Instance.Current = NINAPageVM.Instance.EquipmentVM;
+            MainViewModel.Instance.NINA.Current = MainViewModel.Instance.EquipmentVM;
         }
     }
 }

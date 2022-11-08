@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NINARemote.Core.Interfaces
 {
@@ -9,6 +10,6 @@ namespace NINARemote.Core.Interfaces
         int Interval { get; set; }
         bool UseInterval { get; set; }
 
-        T Fetch();
+        Task<T> Fetch();
     }
 }

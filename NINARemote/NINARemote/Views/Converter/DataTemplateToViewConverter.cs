@@ -18,6 +18,7 @@ namespace NINARemote.Views.Converter
             {
                 case "NINA": return new NINAPage();
                 case "Settings": return new SettingsPage();
+                case "Equipment": return new EquipmentView();
                 case "Camera": return new CameraView();
                 default:
                     break;

@@ -6,7 +6,8 @@
     xmlns:local="clr-namespace:NINARemote.ViewModels"
     x:Name="BrowseItemsPage"
     Title="{Binding Title}"
-    BindingContext="{Binding Settings, Source={x:Static local:NINAPageVM}}">
+    BackgroundColor="{StaticResource ApplicationBackgroundColor}"
+    BindingContext="{Binding Instance, Source={Static local:SettingsVM.Instance}}">
 
     <Grid />
 </ContentPage>

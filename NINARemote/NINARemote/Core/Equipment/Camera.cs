@@ -2,6 +2,7 @@
 using NINARemote.Core.Interfaces;
 using NINARemote.ViewModels;
 using System;
+using System.Threading.Tasks;
 
 namespace NINARemote.Core.Equipment
 {
@@ -9,14 +10,11 @@ namespace NINARemote.Core.Equipment
     {
         public IFetchable<CameraInfo> DeviceFetcher { get; set; }
 
-        private CameraInfo _currentInfo;
+        private CameraInfo _currentInfo = new CameraInfo();
         public CameraInfo CurrentInfo
         {
             get => _currentInfo;
-            set
-            {
-                SetProperty(ref _currentInfo, value);
-            }
+            set => SetProperty(ref _currentInfo, value);
         }
 
         public Camera()
@@ -26,9 +24,9 @@ namespace NINARemote.Core.Equipment
             DeviceFetcher = new CameraFetcher();
         }
 
-        public void UpdateDevice()
+        public async Task UpdateDevice()
         {
-            DeviceFetcher.Fetch();
+            CurrentInfo = await DeviceFetcher.Fetch();
         }
     }
 
@@ -37,7 +35,7 @@ namespace NINARemote.Core.Equipment
         public int Interval { get; set; } = 0;
         public bool UseInterval { get; set; } = false;
 
-        public CameraInfo Fetch()
+        public async Task<CameraInfo> Fetch()
         {
             throw new NotImplementedException();
         }

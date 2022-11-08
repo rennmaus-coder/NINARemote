@@ -31,6 +31,7 @@
             </Style>
 
             <converter:DataTemplateToViewConverter x:Key="DataTemplateViewConverter" />
+            <converter:CurrentInfoToText x:Key="InfoToTextConverter" />
 
             <Color x:Key="ApplicationBackgroundColor">#FF202020</Color>
 

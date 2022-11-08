@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using NINARemote.ViewModels;
+using Xamarin.Forms;
 
 namespace NINARemote
 {
@@ -8,7 +9,7 @@ namespace NINARemote
         public App()
         {
             InitializeComponent();
-
+            new MainViewModel();
             MainPage = new AppShell();
         }
 

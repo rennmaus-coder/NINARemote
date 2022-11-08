@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NINARemote.ViewModels
 {
     public class EquipmentVM : BaseViewModel
     {
+        public static EquipmentVM Instance { get; set; }
+
         private BaseViewModel _currentDevice;
         public BaseViewModel CurrentDevice
         {
@@ -17,7 +20,7 @@ namespace NINARemote.ViewModels
             }
         }
 
-        private List<string> _deviceList = new List<string>() { "Camera" };
+        private List<string> _deviceList = new List<string>() { "Camera", "Telescope" };
         public List<string> DeviceList
         {
             get => _deviceList;
@@ -39,19 +42,25 @@ namespace NINARemote.ViewModels
         }
 
         public Camera Camera { get; set; }
+        public Telescope Telescope { get; set; }
 
         public EquipmentVM()
         {
+            Instance = this;
+            Title = "Equipment";
+
             Camera = new Camera();
+            Telescope = new Telescope();
 
             CurrentDevice = Camera;
         }
 
-        public void UpdateDevice()
+        public async void UpdateDevice()
         {
             switch (DeviceList[DeviceIndex])
             {
-                case "Camera": CurrentDevice = Camera; break;
+                case "Camera": CurrentDevice = Camera; await Camera.UpdateDevice(); break;
+                case "Telescope": CurrentDevice = Telescope; await Telescope.UpdateDevice(); break;
                 default:
                     break;
             }

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NINARemote.ViewModels;
 
 namespace NINARemote.Core
 {
-    public class Utility
+    public static class Utility
     {
+        public static string GetAPIHost() => $"http://{MainViewModel.Instance.Settings.IpAdress}:{MainViewModel.Instance.Settings.Port}";
     }
 }

@@ -6,11 +6,6 @@ namespace NINARemote.ViewModels
 {
     public class NINAPageVM : BaseViewModel
     {
-        public static NINAPageVM Instance { get; set; }
-
-        public SettingsVM Settings { get; set; }
-        public EquipmentVM EquipmentVM { get; set; }
-
         private BaseViewModel _current;
         public BaseViewModel Current
         {
@@ -22,12 +17,7 @@ namespace NINARemote.ViewModels
         {
             Title = "NINA";
 
-            Instance = this;
-
-            Settings = new SettingsVM();
-            EquipmentVM = new EquipmentVM();
-
-            Current = EquipmentVM;
+            Current = MainViewModel.Instance.EquipmentVM;
         }
     }
 }

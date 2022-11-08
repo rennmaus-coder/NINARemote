@@ -6,30 +6,32 @@
     xmlns:vm="clr-namespace:NINARemote.ViewModels"
     Title="{Binding Title}"
     BackgroundColor="{StaticResource ApplicationBackgroundColor}"
-    BindingContext="{Binding, Source={x:Static vm:NINAPageVM}}">
-
-    <!-- <ContentView Content="{Bidning Current, Converter={StaticResource DataTemplateViewConverter}}" />-->
+    BindingContext="{Binding NINA, Source={x:Static vm:MainViewModel.Instance}}">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <ScrollView>
-            <StackLayout
-                BackgroundColor="{StaticResource ApplicationBackgroundColor}"
-                HorizontalOptions="Start"
-                Orientation="Vertical"
-                VerticalOptions="FillAndExpand">
-                <RadioButton
-                    CheckedChanged="EquipmentCheck"
-                    Content="Equipment"
-                    FontSize="14"
-                    HeightRequest="40"
-                    IsChecked="True"
-                    TextColor="White" />
-            </StackLayout>
+        <StackLayout
+            Grid.Row="0"
+            BackgroundColor="{StaticResource ApplicationBackgroundColor}"
+            HorizontalOptions="Start"
+            Orientation="Horizontal"
+            VerticalOptions="Start">
+            <RadioButton
+                CheckedChanged="EquipmentCheck"
+                Content="Equipment"
+                FontSize="14"
+                HeightRequest="60"
+                IsChecked="True"
+                TextColor="White" />
+        </StackLayout>
+
+        <ScrollView Grid.Row="1">
+
+            <ContentView Content="{Binding Current, Converter={StaticResource DataTemplateViewConverter}}" />
 
         </ScrollView>
     </Grid>

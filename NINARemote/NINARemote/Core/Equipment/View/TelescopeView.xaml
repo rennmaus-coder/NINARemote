@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="NINARemote.Core.Equipment.View.CameraView"
+    x:Class="NINARemote.Core.Equipment.View.TelescopeView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:NINARemote.ViewModels"
     BackgroundColor="{StaticResource ApplicationBackgroundColor}"
-    BindingContext="{Binding Camera, Source={x:Static vm:EquipmentVM.Instance}}">
-
+    BindingContext="{Binding Telescope, Source={x:Static vm:EquipmentVM.Instance}}">
     <ContentView.Content>
-        <Grid BackgroundColor="{StaticResource ApplicationBackgroundColor}">
+        <StackLayout>
             <StackLayout Margin="5" Orientation="Vertical">
                 <ContentView Content="{Binding CurrentInfo, Converter={StaticResource InfoToTextConverter}}" />
             </StackLayout>
-        </Grid>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>
