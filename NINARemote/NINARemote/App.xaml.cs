@@ -1,14 +1,16 @@
-﻿using NINARemote.ViewModels;
+﻿using NINARemote.Core.Interfaces;
+using NINARemote.ViewModels;
 using Xamarin.Forms;
 
 namespace NINARemote
 {
     public partial class App : Application
     {
-
-        public App()
+        public static IPlatformMediator PlatformMediator { get; private set; }
+        public App(IPlatformMediator platform)
         {
             InitializeComponent();
+            PlatformMediator = platform;
             new MainViewModel();
             MainPage = new AppShell();
         }

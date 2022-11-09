@@ -67,3 +67,10 @@ namespace NINARemote.ViewModels
         }
     }
 }
+// How to add a new device
+// -----------------------
+// 1. Create a new class and implement IEquipment with a class that inherits from DeviceInfo as Type argument, inherit from BaseViewModel and specify a Title
+// 2. Create an instance in the EquipmentVM constructor
+// 3. Add the name of the device to the switch statement in UpdateDevice and DeviceList (has to be the same!)
+// 4. Create a new view for the device
+// 5. In the DataTemplateToViewConverter, add the Title to the switch statement and return a new instance of the view

@@ -46,7 +46,7 @@ namespace NINARemote.Core.Equipment
                 CurrentInfo = info;
             } catch (Exception e)
             {
-                // TODO: Make alert if error
+                App.PlatformMediator.MakeToast(e.Message);
             }
         }
     }
@@ -68,7 +68,7 @@ namespace NINARemote.Core.Equipment
 
             if (!obj.Value<bool>("Success"))
             {
-                // TODO: Make an alert
+                App.PlatformMediator.MakeToast("Request was not successful");
                 return new TelescopeInfo();
             }
 
