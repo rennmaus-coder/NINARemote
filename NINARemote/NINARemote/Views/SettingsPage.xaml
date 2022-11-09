@@ -9,5 +9,24 @@
     BackgroundColor="{StaticResource ApplicationBackgroundColor}"
     BindingContext="{Binding Instance, Source={Static local:SettingsVM.Instance}}">
 
-    <Grid />
+    <Grid>
+        <StackLayout Margin="5" Orientation="Vertical">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Remote PC IpAddress" TextColor="White" />
+                <Entry
+                    Text="{Binding IpAdress}"
+                    TextColor="White"
+                    Unfocused="SaveSettings"
+                    WidthRequest="200" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Remote PC API Port" TextColor="White" />
+                <Entry
+                    Text="{Binding Port}"
+                    TextColor="White"
+                    Unfocused="SaveSettings"
+                    WidthRequest="200" />
+            </StackLayout>
+        </StackLayout>
+    </Grid>
 </ContentPage>

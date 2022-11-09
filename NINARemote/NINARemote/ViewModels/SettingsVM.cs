@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using NINARemote.Core;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace NINARemote.ViewModels
@@ -27,6 +30,19 @@ namespace NINARemote.ViewModels
             Title = "Settings";
 
             // TODO: Load Settings
+        }
+
+        public void SaveSettings()
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName, "Settings.json");
+            File.WriteAllText(path, JsonConvert.SerializeObject(this));
+        }
+
+        public void LoadSettings()
+        {
+            SettingsVM vm = JsonConvert.DeserializeObject<SettingsVM>(File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName, "Settings.json")));
+            IpAdress = vm.IpAdress;
+            Port = vm.Port;
         }
     }
 }
