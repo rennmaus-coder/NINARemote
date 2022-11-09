@@ -10,6 +10,11 @@
     <ContentView.Content>
         <Grid BackgroundColor="{StaticResource ApplicationBackgroundColor}">
             <StackLayout Margin="5" Orientation="Vertical">
+                <Button
+                    Margin="5"
+                    Command="{Binding UpdateDeviceCommand}"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Update DeviceInfo" />
                 <ContentView Content="{Binding CurrentInfo, Converter={StaticResource InfoToTextConverter}}" />
             </StackLayout>
         </Grid>

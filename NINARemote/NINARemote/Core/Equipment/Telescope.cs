@@ -5,6 +5,7 @@ using NINARemote.ViewModels;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace NINARemote.Core.Equipment
 {
@@ -19,11 +20,18 @@ namespace NINARemote.Core.Equipment
             set => SetProperty(ref _currentInfo, value);
         }
 
+        public Command UpdateDeviceCommand { get; set; }
+
         public Telescope()
         {
             Title = "Telescope";
 
             DeviceFetcher = new TelescopeFetcher();
+
+            UpdateDeviceCommand = new Command(async () =>
+            {
+                await UpdateDevice();
+            });
         }
 
         /// <summary>
@@ -34,7 +42,7 @@ namespace NINARemote.Core.Equipment
         {
             try
             {
-                TelescopeInfo info = await DeviceFetcher.Fetch(); // In two lines, so info doesn't become null
+                TelescopeInfo info = await DeviceFetcher.Fetch(); // In two lines, so info doesn't become null, if there is an error
                 CurrentInfo = info;
             } catch (Exception e)
             {
@@ -50,7 +58,7 @@ namespace NINARemote.Core.Equipment
 
         public async Task<TelescopeInfo> Fetch()
         {
-            HttpClient client = new HttpClient() { Timeout = new System.TimeSpan(0, 0, 0, 0, 500) };
+            HttpClient client = new HttpClient() { Timeout = new TimeSpan(0, 0, 0, 0, 500) };
             string url = $"{Utility.GetAPIHost()}/api/equipment?property=telescope";
             string json = await client.GetStringAsync(url);
             client.Dispose();
@@ -72,7 +80,6 @@ namespace NINARemote.Core.Equipment
                 Connected = res.Value<bool>("Connected"),
                 Dec = res.Value<string>("DeclinationString"),
                 Description = res.Value<string>("Description"),
-                DeviceId = res.Value<string>("DeviceId"),
                 DriverInfo = res.Value<string>("DriverInfo"),
                 DriverVersion = res.Value<string>("DriverVersion"),
                 IsParked = res.Value<bool>("AtParked"),
@@ -82,7 +89,8 @@ namespace NINARemote.Core.Equipment
                 Name = res.Value<string>("Name"),
                 RA = res.Value<string>("RightAscensionString"),
                 Slewing = res.Value<bool>("Slewing"),
-                TimeToMeridianFlip = res.Value<string>("TimeToMeridianFlipString")
+                TimeToMeridianFlip = res.Value<string>("TimeToMeridianFlipString"),
+                FetchTime = DateTime.Now
             };
         }
     }

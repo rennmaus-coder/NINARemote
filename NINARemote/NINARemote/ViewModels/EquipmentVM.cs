@@ -55,12 +55,12 @@ namespace NINARemote.ViewModels
             CurrentDevice = Camera;
         }
 
-        public async void UpdateDevice()
+        public void UpdateDevice()
         {
             switch (DeviceList[DeviceIndex])
             {
-                case "Camera": CurrentDevice = Camera; await Camera.UpdateDevice(); break;
-                case "Telescope": CurrentDevice = Telescope; await Telescope.UpdateDevice(); break;
+                case "Camera": CurrentDevice = Camera; break;
+                case "Telescope": CurrentDevice = Telescope; break;
                 default:
                     break;
             }

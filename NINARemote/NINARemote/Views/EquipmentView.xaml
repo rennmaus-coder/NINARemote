@@ -9,7 +9,11 @@
     <ContentView.Content>
         <Grid>
             <StackLayout Orientation="Vertical">
-                <Picker ItemsSource="{Binding DeviceList}" SelectedIndex="{Binding DeviceIndex}" />
+                <Picker
+                    ItemsSource="{Binding DeviceList}"
+                    SelectedIndex="{Binding DeviceIndex}"
+                    TextColor="White"
+                    TitleColor="White" />
                 <ContentView Content="{Binding CurrentDevice, Converter={StaticResource DataTemplateViewConverter}}" />
             </StackLayout>
         </Grid>

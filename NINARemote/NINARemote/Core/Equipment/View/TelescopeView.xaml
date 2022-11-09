@@ -9,6 +9,11 @@
     <ContentView.Content>
         <StackLayout>
             <StackLayout Margin="5" Orientation="Vertical">
+                <Button
+                    Margin="5"
+                    Command="{Binding UpdateDeviceCommand}"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Update DeviceInfo" />
                 <ContentView Content="{Binding CurrentInfo, Converter={StaticResource InfoToTextConverter}}" />
             </StackLayout>
         </StackLayout>
