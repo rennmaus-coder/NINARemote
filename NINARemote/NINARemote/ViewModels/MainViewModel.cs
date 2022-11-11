@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NINARemote.Core;
+using System;
+using System.IO;
 
 namespace NINARemote.ViewModels
 {
@@ -15,6 +15,8 @@ namespace NINARemote.ViewModels
         public MainViewModel()
         {
             Instance = this;
+
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName));
 
             Settings = new SettingsVM();
             NINA = new NINAPageVM();

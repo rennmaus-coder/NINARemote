@@ -1,8 +1,5 @@
 ﻿using NINARemote.Core.Equipment;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NINARemote.ViewModels
 {
@@ -20,7 +17,7 @@ namespace NINARemote.ViewModels
             }
         }
 
-        private List<string> _deviceList = new List<string>() { "Camera", "Telescope" };
+        private List<string> _deviceList = new List<string>() { "Camera", "Telescope", "Focuser" };
         public List<string> DeviceList
         {
             get => _deviceList;
@@ -43,6 +40,7 @@ namespace NINARemote.ViewModels
 
         public Camera Camera { get; set; }
         public Telescope Telescope { get; set; }
+        public Focuser Focuser { get; set; }
 
         public EquipmentVM()
         {
@@ -51,6 +49,7 @@ namespace NINARemote.ViewModels
 
             Camera = new Camera();
             Telescope = new Telescope();
+            Focuser = new Focuser();
 
             CurrentDevice = Camera;
         }
@@ -61,6 +60,7 @@ namespace NINARemote.ViewModels
             {
                 case "Camera": CurrentDevice = Camera; break;
                 case "Telescope": CurrentDevice = Telescope; break;
+                case "Focuser": CurrentDevice = Focuser; break;
                 default:
                     break;
             }
@@ -74,3 +74,5 @@ namespace NINARemote.ViewModels
 // 3. Add the name of the device to the switch statement in UpdateDevice and DeviceList (has to be the same!)
 // 4. Create a new view for the device
 // 5. In the DataTemplateToViewConverter, add the Title to the switch statement and return a new instance of the view
+//
+// If such error occurs, you forgot to add it to the converter: Fatal signal 11 (SIGSEGV), code 2 (SEGV_ACCERR)

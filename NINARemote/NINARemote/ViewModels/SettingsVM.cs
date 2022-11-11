@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NINARemote.Core;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace NINARemote.ViewModels
 {
@@ -29,7 +27,9 @@ namespace NINARemote.ViewModels
         {
             Title = "Settings";
 
-            // TODO: Load Settings
+            Instance = this;
+
+            LoadSettings();
         }
 
         public void SaveSettings()
@@ -40,9 +40,15 @@ namespace NINARemote.ViewModels
 
         public void LoadSettings()
         {
-            SettingsVM vm = JsonConvert.DeserializeObject<SettingsVM>(File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName, "Settings.json")));
-            IpAdress = vm.IpAdress;
-            Port = vm.Port;
+            try
+            {
+                SettingsVM vm = JsonConvert.DeserializeObject<SettingsVM>(File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName, "Settings.json")));
+                IpAdress = vm.IpAdress;
+                Port = vm.Port;
+            } catch (FileNotFoundException e)
+            {
+
+            }
         }
     }
 }
