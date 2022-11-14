@@ -22,6 +22,7 @@
             <StackLayout Orientation="Horizontal">
                 <Label Text="Remote PC API Port" TextColor="White" />
                 <Entry
+                    Keyboard="Numeric"
                     Text="{Binding Port}"
                     TextColor="White"
                     Unfocused="SaveSettings"

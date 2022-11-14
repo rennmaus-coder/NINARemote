@@ -17,7 +17,13 @@ namespace NINARemote.ViewModels
             }
         }
 
-        private List<string> _deviceList = new List<string>() { "Camera", "Telescope", "Focuser" };
+        private List<string> _deviceList = new List<string>() 
+        { 
+            "Camera", 
+            "Telescope", 
+            "Focuser", 
+            "Guider"
+        };
         public List<string> DeviceList
         {
             get => _deviceList;
@@ -41,6 +47,7 @@ namespace NINARemote.ViewModels
         public Camera Camera { get; set; }
         public Telescope Telescope { get; set; }
         public Focuser Focuser { get; set; }
+        public Guider Guider { get; set; }
 
         public EquipmentVM()
         {
@@ -50,6 +57,7 @@ namespace NINARemote.ViewModels
             Camera = new Camera();
             Telescope = new Telescope();
             Focuser = new Focuser();
+            Guider = new Guider();
 
             CurrentDevice = Camera;
         }
@@ -61,6 +69,7 @@ namespace NINARemote.ViewModels
                 case "Camera": CurrentDevice = Camera; break;
                 case "Telescope": CurrentDevice = Telescope; break;
                 case "Focuser": CurrentDevice = Focuser; break;
+                case "Guider": CurrentDevice = Guider; break;
                 default:
                     break;
             }
@@ -75,4 +84,4 @@ namespace NINARemote.ViewModels
 // 4. Create a new view for the device
 // 5. In the DataTemplateToViewConverter, add the Title to the switch statement and return a new instance of the view
 //
-// If such error occurs, you forgot to add it to the converter: Fatal signal 11 (SIGSEGV), code 2 (SEGV_ACCERR)
+// // If such error occurs, you need to increase the heap size of the emulator (vm.heapsize): Fatal signal 11 (SIGSEGV), code 2 (SEGV_ACCERR)

@@ -22,6 +22,7 @@ namespace NINARemote.Views.Converter
                 case "Camera": return new CameraView();
                 case "Telescope": return new TelescopeView();
                 case "Focuser": return new FocuserView();
+                case "Guider": return new GuiderView();
                 default:
                     break;
             }
