@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NINARemote.Core.Equipment.Interfaces;
 using NINARemote.Core.Interfaces;
 using NINARemote.ViewModels;
@@ -55,22 +56,36 @@ namespace NINARemote.Core.Equipment
         public async Task<GuiderInfo> Fetch()
         {
             HttpClient client = new HttpClient() { Timeout = new TimeSpan(0, 0, 0, 0, 500) };
-            string url = $"{Utility.GetAPIHost()}/api/equipment?property=telescope";
+            string url = $"{Utility.GetAPIHost()}/api/equipment?property=guider";
             string json = await client.GetStringAsync(url);
             client.Dispose();
 
-            JObject obj = JObject.Parse(json);
-            JObject res = JObject.Parse(obj.Value<string>("Response"));
-            JObject error = JObject.Parse(res.Value<string>("RMSError"));
-            JObject Dec = JObject.Parse(error.Value<string>("Dec"));
-            JObject Ra = JObject.Parse(error.Value<string>("RA"));
-            JObject Total = JObject.Parse(error.Value<string>("Total"));
+            RequestData data = JsonConvert.DeserializeObject<RequestData>(json);
+            JObject res = JObject.Parse(data.Response.ToString());
 
-            if (!obj.Value<bool>("Success"))
+            if (!data.Success)
             {
-                App.PlatformMediator.MakeToast("Request was not successful");
+                App.PlatformMediator.MakeToast(data.Error);
                 return new GuiderInfo();
             }
+
+            if (!res.Value<bool>("Connected"))
+            {
+                return new GuiderInfo()
+                {
+                    Connected = res.Value<bool>("Connected"),
+                    Description = res.Value<string>("Description"),
+                    DriverInfo = res.Value<string>("DriverInfo"),
+                    DriverVersion = res.Value<string>("DriverVersion"),
+                    Name = res.Value<string>("Name"),
+                    FetchTime = DateTime.Now
+                };
+            }
+
+            JToken error = res.Value<JToken>("RMSError");
+            JToken Dec = error.Value<JToken>("Dec");
+            JToken Ra = error.Value<JToken>("RA");
+            JToken Total = error.Value<JToken>("Total");
 
             return new GuiderInfo()
             {

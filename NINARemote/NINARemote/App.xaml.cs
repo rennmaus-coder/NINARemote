@@ -21,6 +21,7 @@ namespace NINARemote
 
         protected override void OnSleep()
         {
+            MainViewModel.Instance.Settings.SaveSettings();
         }
 
         protected override void OnResume()

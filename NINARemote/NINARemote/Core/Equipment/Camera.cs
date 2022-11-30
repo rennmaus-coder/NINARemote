@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NINARemote.Core.Equipment.Interfaces;
 using NINARemote.Core.Interfaces;
 using NINARemote.ViewModels;
@@ -44,6 +45,7 @@ namespace NINARemote.Core.Equipment
             catch (Exception e)
             {
                 App.PlatformMediator.MakeToast(e.Message);
+                Console.WriteLine(e.StackTrace);
             }
         }
     }
@@ -60,12 +62,12 @@ namespace NINARemote.Core.Equipment
             string json = await client.GetStringAsync(url);
             client.Dispose();
 
-            JObject obj = JObject.Parse(json);
-            JObject res = JObject.Parse(obj.Value<string>("Response"));
+            RequestData data = JsonConvert.DeserializeObject<RequestData>(json);
+            JObject res = JObject.Parse(data.Response.ToString());
 
-            if (!obj.Value<bool>("Success"))
+            if (!data.Success)
             {
-                App.PlatformMediator.MakeToast("Request was not successful");
+                App.PlatformMediator.MakeToast(data.Error);
                 return new CameraInfo();
             }
 

@@ -84,4 +84,4 @@ namespace NINARemote.ViewModels
 // 4. Create a new view for the device
 // 5. In the DataTemplateToViewConverter, add the Title to the switch statement and return a new instance of the view
 //
-// // If such error occurs, you need to increase the heap size of the emulator (vm.heapsize): Fatal signal 11 (SIGSEGV), code 2 (SEGV_ACCERR)
+// // If such error occurs, you need to change the heap size of the emulator (vm.heapsize): Fatal signal 11 (SIGSEGV), code 2 (SEGV_ACCERR)

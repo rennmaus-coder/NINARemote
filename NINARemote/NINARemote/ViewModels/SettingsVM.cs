@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using NINARemote.Core;
-using System;
-using System.IO;
+﻿using Xamarin.Forms;
 
 namespace NINARemote.ViewModels
 {
@@ -10,17 +7,27 @@ namespace NINARemote.ViewModels
         public static SettingsVM Instance { get; set; }
 
         private string _ipAddress = "localhost";
-        public string IpAdress
+        public string IpAddress
         {
             get => _ipAddress;
-            set => SetProperty(ref _ipAddress, value);
+            set
+            {
+                SetProperty(ref _ipAddress, value);
+                Application.Current.Properties["IpAddress"] = IpAddress;
+                SaveSettings();
+            }
         }
 
         private int _port = 1888;
         public int Port
         {
             get => _port;
-            set => SetProperty(ref _port, value);
+            set
+            {
+                SetProperty(ref _port, value);
+                Application.Current.Properties["Port"] = Port;
+                SaveSettings();
+            }
         }
 
         public SettingsVM()
@@ -34,21 +41,16 @@ namespace NINARemote.ViewModels
 
         public void SaveSettings()
         {
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName, "Settings.json");
-            File.WriteAllText(path, JsonConvert.SerializeObject(this));
+            Application.Current.SavePropertiesAsync();
         }
 
         public void LoadSettings()
         {
-            try
-            {
-                SettingsVM vm = JsonConvert.DeserializeObject<SettingsVM>(File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName, "Settings.json")));
-                IpAdress = vm.IpAdress;
-                Port = vm.Port;
-            } catch (FileNotFoundException e)
-            {
+            if (!Application.Current.Properties.ContainsKey("IpAddress"))
+                return;
 
-            }
+            IpAddress = Application.Current.Properties["IpAddress"].ToString();
+            Port = int.Parse(Application.Current.Properties["Port"].ToString());
         }
     }
 }

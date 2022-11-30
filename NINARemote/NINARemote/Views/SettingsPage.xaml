@@ -14,7 +14,7 @@
             <StackLayout Orientation="Horizontal">
                 <Label Text="Remote PC IpAddress" TextColor="White" />
                 <Entry
-                    Text="{Binding IpAdress}"
+                    Text="{Binding IpAddress}"
                     TextColor="White"
                     Unfocused="SaveSettings"
                     WidthRequest="200" />
